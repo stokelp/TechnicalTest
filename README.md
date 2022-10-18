@@ -1,5 +1,5 @@
 # Metal groups visualization
-## Technical test for Kobi
+## Technical test
 
 ### Goal of the test
 Goal of this exercise is to create a small web application that visualizes database data.
