@@ -13,7 +13,7 @@ Frontend should allow to:
 ### Instructions
 - [ ] Frontend must be written using React, backend/data access is up to you. Feel free to use libraries/tools you want.
 - [ ] Fork this repository
-- [ ] Implement the required feature
+- [ ] Implement the required features
 - [ ] Publish it on GitHub as a pull-request
 - [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
