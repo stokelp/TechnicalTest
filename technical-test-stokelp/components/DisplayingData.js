@@ -56,6 +56,17 @@ export default function BandsList({}) {
   return (
     <div>
       <h1>Band List</h1>
+      <div>
+        <label htmlFor="styleSelect">Select a Style:</label>
+        <select id="styleSelect">
+          <option value="">All Styles</option>
+          {availableStyles.map((style, index) => (
+            <option key={index} value={style}>
+              {style}
+            </option>
+          ))}
+        </select>
+      </div>
       <ul>
         {bands.map((band, index) => (
           <li key={index}>
