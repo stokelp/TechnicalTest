@@ -18,6 +18,25 @@ export default function BandsList({}) {
     console.log("sortedBands", sortedBands);
 
     setBands(sortedBands);
+
+    // Extract all styles
+    const getAllStyles = (data) => {
+      const styles = [];
+      for (const band of data) {
+        if (band.style) {
+          const styleList = band.style.split(",");
+          for (const style of styleList) {
+            if (!styles.includes(style)) {
+              styles.push(style);
+            }
+          }
+        }
+      }
+
+      return styles;
+    };
+    const allStyles = getAllStyles(bandsData);
+    console.log("allStyles", allStyles);
   }, []);
 
   return (
