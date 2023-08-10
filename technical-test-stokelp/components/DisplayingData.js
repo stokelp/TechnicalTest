@@ -3,7 +3,8 @@ import bandsData from "../public/data/metal_bands_2017.json";
 
 export default function BandsList({}) {
   const [bands, setBands] = useState([]);
-  const [availableStyles, setAvailableStyles] = useState([]);
+  const [allStyles, setAllStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState("");
 
   useEffect(() => {
     // Sort band_name in alphabetical order
@@ -33,11 +34,11 @@ export default function BandsList({}) {
           }
         }
       }
-
       return styles;
     };
+
     const allStyles = getAllStyles(bandsData);
-    console.log("allStyles", allStyles);
+    console.log("uniqueStyles", allStyles);
 
     // Sort styles alphabetically
     const sortedStyles = allStyles.sort((a, b) => {
@@ -50,17 +51,30 @@ export default function BandsList({}) {
       return 0;
     });
     console.log("sortedStyles", sortedStyles);
-    setAvailableStyles(sortedStyles);
+    setAllStyles(sortedStyles);
   }, []);
+
+  // Filter bands with the selected style
+  const filteredBands = bands.filter((band) => {
+    if (!selectedStyle) {
+      return bands; // Include all bands when no style is selected
+    }
+    return band.style && band.style.includes(selectedStyle);
+  });
 
   return (
     <div>
       <h1>Band List</h1>
       <div>
-        <label htmlFor="styleSelect">Select a Style:</label>
-        <select id="styleSelect">
+        <label htmlFor="styleFilter">Filter by Style:</label>
+        <select
+          name="styles"
+          id="styleSelect"
+          value={selectedStyle}
+          onChange={(e) => setSelectedStyle(e.target.value)}
+        >
           <option value="">All Styles</option>
-          {availableStyles.map((style, index) => (
+          {allStyles.map((style, index) => (
             <option key={index} value={style}>
               {style}
             </option>
@@ -68,7 +82,7 @@ export default function BandsList({}) {
         </select>
       </div>
       <ul>
-        {bands.map((band, index) => (
+        {filteredBands.map((band, index) => (
           <li key={index}>
             <strong>{band.band_name}</strong> - {band.origin}
           </li>
