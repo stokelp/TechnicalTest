@@ -63,9 +63,9 @@ export default function BandsList({}) {
   });
 
   return (
-    <div>
+    <div className="mainDiv">
       <h1>Band List</h1>
-      <div>
+      <div className="styleList">
         <label htmlFor="styleFilter">Filter by Style:</label>
         <select
           name="styles"
@@ -81,7 +81,7 @@ export default function BandsList({}) {
           ))}
         </select>
       </div>
-      <ul>
+      <ul className="bandList">
         {filteredBands.map((band, index) => (
           <li key={index}>
             <strong>{band.band_name}</strong> - {band.origin}
