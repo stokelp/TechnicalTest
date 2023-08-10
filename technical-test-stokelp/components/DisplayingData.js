@@ -3,6 +3,7 @@ import bandsData from "../public/data/metal_bands_2017.json";
 
 export default function BandsList({}) {
   const [bands, setBands] = useState([]);
+  const [availableStyles, setAvailableStyles] = useState([]);
 
   useEffect(() => {
     // Sort band_name in alphabetical order
@@ -37,6 +38,19 @@ export default function BandsList({}) {
     };
     const allStyles = getAllStyles(bandsData);
     console.log("allStyles", allStyles);
+
+    // Sort styles alphabetically
+    const sortedStyles = allStyles.sort((a, b) => {
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("sortedStyles", sortedStyles);
+    setAvailableStyles(sortedStyles);
   }, []);
 
   return (
