@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Papa from 'papaparse';
 
 function App() {
+  const [csvData, setCsvData] = useState([]);
+
+  const parseCSV = (event) => {
+    Papa.parse(event.target.files[0], {
+      header: true,
+      complete: function (results) {
+        setCsvData(results.data);
+        // console.log(results.data);
+      },
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 id="title">Upload your CSV file</h1>
+      <input
+        type="file"
+        name="file"
+        accept=".csv"
+        onChange={parseCSV}
+        style={{ display: "block", margin: "30px auto" }}
+      />
     </div>
   );
 }
