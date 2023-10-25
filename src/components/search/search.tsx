@@ -51,7 +51,6 @@ export default function Search({ callback }: SearchProps) {
                 cacheOptions
                 defaultOptions
                 loadOptions={() => {fetch("/api/styles").then(res => res.json()).then(data => {
-                    console.log("hello", convertArrayToOption(data.data))
                     return convertArrayToOption(data.data)
                   })}}
                 // styles={customStyles}
@@ -67,7 +66,8 @@ export default function Search({ callback }: SearchProps) {
                 defaultOptions
                 loadOptions={() => {fetch("/api/countries").then(res => res.json()).then(data => {
                     return convertArrayToOption(data.data)
-                })}}                // styles={customStyles}
+                })}}
+                // styles={customStyles}
                 onChange={(e) => {
                     setCountries(e as string[])
                 }}
